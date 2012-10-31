@@ -4,6 +4,7 @@ from=$(git describe master --abbrev=0)
 to="master"
 oneline=false
 alias="log"
+regex='#[0-9]'
 
 while :
 do
@@ -24,6 +25,10 @@ do
             alias=$2
             shift 2
             ;;
+        --regex)
+            regex=$2
+            shift 2
+            ;;
         *)
             break
             ;;
@@ -31,8 +36,8 @@ do
 done
 
 if $oneline ; then
-    git cherry "$from" "$to" -v | sed -n -e '/#[0-9]/p' | awk '{system("git '''$alias''' --oneline " $2 " -1")}'
+    git cherry "$from" "$to" -v | sed -n -e '/'''$regex'''/p' | awk '{system("git '''$alias''' --oneline " $2 " -1")}'
 else
-    git cherry "$from" "$to" -v | sed -n -e '/#[0-9]/p' | awk '{system("git '''$alias''' " $2 " -1")}'
+    git cherry "$from" "$to" -v | sed -n -e '/'''$regex'''/p' | awk '{system("git '''$alias''' " $2 " -1")}'
 fi
 
