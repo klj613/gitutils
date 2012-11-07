@@ -1,0 +1,7 @@
+#!/bin/sh
+
+git log --decorate=full --simplify-by-decoration --pretty=oneline HEAD | \
+sed -r -e 's#^[^\(]*\(([^\)]*)\).*$#\1#' \
+       -e 's#,#\n#g' | \
+grep 'tag:' | \
+sed -r -e 's#[[:space:]]*tag:[[:space:]]*##'
