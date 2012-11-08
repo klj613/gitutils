@@ -17,3 +17,10 @@ tickets
 * `git-tickets --alias lg` : Will use `git lg` instead of `git log`
 * `git-tickets --oneline` : Will format each result as a single line.
 * `git-tickets --from basebranch --to featurebranch` : Will return ticket numbers which would be merged into `basebranch` if `featurebranch` was merged in.
+
+tags
+----
+
+Example: `git-tags`
+
+Usage: Lists all reachable tags from HEAD.
